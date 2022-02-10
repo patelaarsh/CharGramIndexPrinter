@@ -92,6 +92,6 @@ if __name__ == '__main__':
         # print(corpus_data)
 
         # Printing reverse lookup output in sorted order
-        for corp in sorted(corpus_database.keys()):
+        for corp in sorted(corpus_database.keys(), key=lambda k: k.replace('_', '')):
             entry = corpus_database[corp]
-            print("{}\n{},{},{}\n".format(corp, entry[0], entry[1], ''.join([str(x) for x in entry[2]])))
+            print("{}\n{},{},{}".format(corp, entry[0], entry[1], ''.join([str(x) for x in entry[2]])))
