@@ -1,4 +1,4 @@
-# CharGramIndexPrinter Homework 2
+# CharGramIndexPrinter Homework 1
 Convert given corpus data and print index for char grams in each document.
 
 ## Data
