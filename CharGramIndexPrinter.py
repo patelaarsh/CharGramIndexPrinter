@@ -6,7 +6,9 @@ def process_str(c, n):
     result = " ".join(c.split())
     result = result.lower()
     result = result.replace(" ", "_")
+
     padding = ''.join(["_" for _ in range(n - 1)])
+
     return padding + result + padding
 
 
@@ -86,13 +88,10 @@ if __name__ == '__main__':
                 docs.append(''.join(lines))
 
         # Generate N-Grams database
-        corpus_data = gen_database(docs, args.ngram)
+        corpus_database = gen_database(docs, args.ngram)
         # print(corpus_data)
 
-        # Soring database
-        sorted_data = sorted(corpus_data.keys(), key=lambda x: x.lower())
-
-        # Printing reverse lookup output
-        for corp in sorted_data:
-            entry = corpus_data[corp]
-            print("{}\n{},{},{}".format(corp, entry[0], entry[1], ','.join([str(x) for x in entry[2]])))
+        # Printing reverse lookup output in sorted order
+        for corp in sorted(corpus_database.keys()):
+            entry = corpus_database[corp]
+            print("{}\n{},{},{}\n".format(corp, entry[0], entry[1], ''.join([str(x) for x in entry[2]])))
