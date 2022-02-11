@@ -68,28 +68,15 @@ if __name__ == '__main__':
 
     # Read file to get corpus data
     with open(args.filename) as file:
-        docs = []
-        lines = []
+        # Read all the text of file
+        text = file.read()
 
-        # Right strip lines to remove new lines
-        fLines = [line.rstrip() for line in file]
-
-        # Get each document data
-        for i, l in enumerate(fLines):
-            # Document seperator
-            if '---' not in l:
-                lines.append(l)
-            else:
-                docs.append(''.join(lines))
-                lines = []
-
-            # End line
-            if i == len(fLines) - 1:
-                docs.append(''.join(lines))
+        # Strip lines to remove new lines
+        fLines = [line.strip() for line in text.split("---")]
 
         # Generate N-Grams database
-        corpus_database = gen_database(docs, args.ngram)
-        # print(corpus_data)
+        corpus_database = gen_database(fLines, args.ngram)
+        # print(corpus_database)
 
         # Printing reverse lookup output in sorted order
         for corp in sorted(corpus_database.keys(), key=lambda k: k.replace('_', '')):
